@@ -85,6 +85,22 @@ public class Solution {
     }
 
     public List<Integer> inorderTraversalRecursive(TreeNode root){
-        
+        List<Integer> result = new ArrayList<Integer>();
+
+        postResult(root, result);
+
+        return result;
+    }
+
+    public void postResult(TreeNode point, List<Integer> result){
+        if(point != null){
+            if(point.left != null)
+                postResult(point.left, result);
+                
+            result.add(point.val);
+            
+            if(point.right != null)
+                postResult(point.right, result);
+        }
     }
 }
