@@ -63,10 +63,24 @@ public class Solution {
     }
 
     /**94. Binary Tree Inorder Traversal */
-    public List<Integer> inorderTraversal(TreeNode root){
+    public List<Integer> inorderTraversalIterative(TreeNode root){
         List<Integer> result = new ArrayList<Integer>();
-        
+        Stack<TreeNode> temp = new Stack<TreeNode>();
+        TreeNode point = root;
+
+        while(point!=null || !temp.empty()){
+            while(point!=null){
+                temp.add(point);
+                point = point.left;
+            }
+            // Own method get Time Limit Exceeded. don't know why.
+            // point = temp.firstElement().right;
+            // result.add(temp.pop().val);
+            point = temp.pop();
+            result.add(point.val);
+            point = point.right;
+        }
+
         return result;
     }
-
 }
