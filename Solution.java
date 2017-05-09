@@ -62,10 +62,4 @@ public class Solution {
         return Math.max(right,left)+1;
     }
 
-    /**563. Binary Tree Tilt */
-    public int findTilt(TreeNode root){
-        
-    }
-
-
 }
