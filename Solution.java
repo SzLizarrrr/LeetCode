@@ -64,7 +64,9 @@ public class Solution {
 
     /**94. Binary Tree Inorder Traversal */
     public List<Integer> inorderTraversal(TreeNode root){
+        List<Integer> result = new ArrayList<Integer>();
         
+        return result;
     }
 
 }
