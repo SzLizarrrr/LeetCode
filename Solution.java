@@ -106,13 +106,13 @@ public class Solution {
     
     /**98. Validate Binary Search Tree */
     public boolean isValidBST(TreeNode root){
-        System.out.println(root.val);
+        if(root != null) System.out.println(root.val);
         if(root == null) return true;
-        if(root.val > root.right.val){
+        if(root.right != null && root.val >= root.right.val){
             System.out.println("a");
             return false;
         }
-        if(root.left.val > root.val){
+        if(root.left != null && root.left.val >= root.val){
             System.out.println("b");
             return false;
         }
