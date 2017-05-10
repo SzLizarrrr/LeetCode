@@ -98,9 +98,26 @@ public class Solution {
                 postResult(point.left, result);
                 
             result.add(point.val);
-            
+
             if(point.right != null)
                 postResult(point.right, result);
         }
+    }
+    
+    /**98. Validate Binary Search Tree */
+    public boolean isValidBST(TreeNode root){
+        System.out.println(root.val);
+        if(root == null) return true;
+        if(root.val > root.right.val){
+            System.out.println("a");
+            return false;
+        }
+        if(root.left.val > root.val){
+            System.out.println("b");
+            return false;
+        }
+        isValidBST(root.left);
+        isValidBST(root.right);
+        return true;
     }
 }
