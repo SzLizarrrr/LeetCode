@@ -45,6 +45,21 @@ public class TreeSolution {
         addLevel(result, level+1, point.left);
         addLevel(result, level+1, point.right);
     }
+    
+    /**103. Binary Tree Zigzag Level Order Traversal */
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root){
+       LinkedList<List<Integer>> result = new LinkedList<List<Integer>>();
+       int level = 0;
+
+       resultHelpMethod(root, result, level);
+       return result;
+    }
+
+    public void resultHelpMethod(TreeNode node, LinkedList<List<Integer>> result, int level){
+        if(node == null) return;
+        if(result.size-1 < level) result.add(new LinkedList<Integer>());
+        if(level%2 == 0) result.get()
+    }
 
     /**104. Maximum Depth of Binary Tree */
     public int maxDepth(TreeNode root) {
