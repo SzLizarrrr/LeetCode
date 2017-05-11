@@ -7,7 +7,7 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+public class TreeSolution {
     /**102. Binary Tree Level Order Traveral I */
     public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> tmp = new LinkedList<TreeNode>();
