@@ -105,19 +105,34 @@ public class Solution {
     }
     
     /**98. Validate Binary Search Tree */
+    // int max, min;
+    // public boolean isValidBST(TreeNode root){
+    //     // if(root != null) System.out.println(root.val);
+    //     if(root == null) return true;
+    //     if(root.right != null && root.val >= root.right.val){
+    //         System.out.println("a");
+    //         return false;
+    //     }
+    //     if(root.left != null && root.left.val >= root.val){
+    //         System.out.println("b");
+    //         return false;
+    //     }
+    //     isValidBST(root.left);
+    //     isValidBST(root.right);
+    //     return true;
+    // }
+
     public boolean isValidBST(TreeNode root){
-        if(root != null) System.out.println(root.val);
-        if(root == null) return true;
-        if(root.right != null && root.val >= root.right.val){
-            System.out.println("a");
-            return false;
-        }
-        if(root.left != null && root.left.val >= root.val){
-            System.out.println("b");
-            return false;
-        }
-        isValidBST(root.left);
-        isValidBST(root.right);
-        return true;
+        // return isValidBST(root, Integer.MAX_VALUE, Integer.MIN_VALUE); using Integer will be failed on number 2147483647
+        return isValidBST(root, Long.MAX_VALUE, Long.MIN_VALUE);
+    }
+
+    // public boolean isValidBST(TreeNode node, Integer max, Integer min){
+    public boolean isValidBST(TreeNode node, long max, long min){
+        if(node == null) return true;
+        if(node.val >= max || node.val <= min) return false;
+        // max = node.val; isValidBST(node.left, max, min);
+        // min = nood.val; isValidBST(node.right, max, min);
+        return isValidBST(node.left, node.val, min) && isValidBST(node.right, max, node.val);
     }
 }
