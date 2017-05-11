@@ -135,4 +135,17 @@ public class Solution {
         // min = nood.val; isValidBST(node.right, max, min);
         return isValidBST(node.left, node.val, min) && isValidBST(node.right, max, node.val);
     }
+    
+    /**100. Same Tree */
+    public boolean isSameTree(TreeNode p, TreeNode q){
+        if(p == null && q == null) return true;
+        if(p == null && q != null) return false;
+        if(p != null && q == null) return false;
+        // last two line can merge as this
+        // if(p == null || q == null) return false;
+        if(p.val != q.val) return false;
+
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+
+    }
 }
