@@ -57,8 +57,12 @@ public class TreeSolution {
 
     public void resultHelpMethod(TreeNode node, LinkedList<List<Integer>> result, int level){
         if(node == null) return;
-        if(result.size-1 < level) result.add(new LinkedList<Integer>());
-        if(level%2 == 0) result.get()
+        if(result.size()-1 < level) result.add(new LinkedList<Integer>());
+        if(level%2 == 0) result.get(level).add(node.val);
+        else result.get(level).add(0, node.val);
+
+        resultHelpMethod(node.left, result, level+1);
+        resultHelpMethod(node.right, result, level+1);
     }
 
     /**104. Maximum Depth of Binary Tree */
