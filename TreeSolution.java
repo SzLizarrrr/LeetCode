@@ -33,9 +33,9 @@ public class TreeSolution {
         if(root == null) return 0;
         
         int leftDepth = maxDepth(root.left);
-        System.out.println("left " + leftDepth);
+        // System.out.println("left " + leftDepth);
         int rightDepth = maxDepth(root.right);
-        System.out.println("right " + rightDepth);
+        // System.out.println("right " + rightDepth);
         
         return Math.max(leftDepth, rightDepth)+1;
     }
