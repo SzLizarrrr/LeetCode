@@ -28,6 +28,24 @@ public class TreeSolution {
         return result;
     }
 
+    /**107. Binary Tree Level Order Traveral II */
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        LinkedList<List<Integer>> result = new LinkedList<List<Integer>>();
+        
+        addLevel(result, 0, root);
+        
+        return result;
+    }
+    
+    public void addLevel(LinkedList<List<Integer>> result, int level, TreeNode point){
+        if(point == null) return;
+        if(result.size()-1 < level) result.addFirst(new LinkedList<Integer>());
+        result.get(result.size()-1-level).add(point.val);
+        
+        addLevel(result, level+1, point.left);
+        addLevel(result, level+1, point.right);
+    }
+
     /**104. Maximum Depth of Binary Tree */
     public int maxDepth(TreeNode root) {
         if(root == null) return 0;
