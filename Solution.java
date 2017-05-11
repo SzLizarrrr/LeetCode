@@ -148,4 +148,18 @@ public class Solution {
         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 
     }
+
+    /**101. Symmetric Tree */
+    public boolean isSymmetric(TreeNode root){
+        if(root == null) return true; // very easy to miss
+        return isSymmetric(root.left, root.right);
+    }
+
+    public boolean isSymmetric(TreeNode leftNode, TreeNode rightNode){
+        if(leftNode == null && rightNode == null) return true;
+        if(leftNode == null || rightNode == null) return false;
+        if(leftNode.val != rightNode.val) return false;
+
+        return isSymmetric(leftNode.left, rightNode.right) && isSymmetric(leftNode.right, rightNode.left);
+    }
 }
