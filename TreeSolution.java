@@ -77,6 +77,23 @@ public class TreeSolution {
         return Math.max(leftDepth, rightDepth)+1;
     }
 
+    /**105. Construct Binary Tree from Preoroder and Inorder Traversal */
+    public TreeNode buildTree(int[] preorder, int[] inorder){
+        int p = 0, i = 0;
+        TreeNode root = new TreeNode();
+        TreeNode node = root;
+
+        buildUtil(node, 0, preorder.size(), p, i);
+        
+        return root;
+    }
+
+    public void buildUtil(TreeNode node, int min, int max, int p, int i){
+        while(inorder[i] != preorder[p]) i++;
+        node.val =  inorder[i];
+        p++;
+    }
+
     /**110. Balanced Binary Tree */
     public boolean isBalanced(TreeNode root){
          return high(root)!=-1;
