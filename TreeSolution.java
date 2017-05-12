@@ -79,20 +79,46 @@ public class TreeSolution {
 
     /**105. Construct Binary Tree from Preoroder and Inorder Traversal */
     public TreeNode buildTree(int[] preorder, int[] inorder){
-        int p = 0, i = 0;
-        TreeNode root = new TreeNode();
-        TreeNode node = root;
-
-        buildUtil(node, 0, preorder.size(), p, i);
-        
-        return root;
+        // return buildTree(preorder, inorder, 0, inorder.length);
+        return buildTree(preorder, inorder, 0, 0, inorder.length);
     }
 
-    public void buildUtil(TreeNode node, int min, int max, int p, int i){
-        while(inorder[i] != preorder[p]) i++;
-        node.val =  inorder[i];
-        p++;
+    public TreeNode buildTree(int[] preorder, int[] inorder, int p, int min, int max){
+        if(p >= preorder.length || min == max) return null;
+        TreeNode node = new TreeNode(preorder[p]);
+        int index = 0;
+        for(int i=min; i<max; i++){
+            // if(inorder[i] == preorder[p]) {
+            if(inorder[i] == node.val) {
+                // node.val = preorder[p];
+                index = i;
+                // break;
+            }
+        }
+
+        node.left = buildTree(preorder, inorder, p+1, min, index);
+        // node.right = buildTree(preorder, inorder, index+1, index+1, max);
+        node.right = buildTree(preorder, inorder, p + index - min + 1, index+1, max);
+        return node;
     }
+
+    // public TreeNode buildTree(int[] preorder, int[] inorder, int min, int max){
+    //     if(min == max) return null;
+    //     TreeNode node = new TreeNode(preorder[min]);
+    //     int index = 0;
+    //     for(int i=min; i<max; i++){
+    //         // if(inorder[i] == preorder[p]) {
+    //         if(inorder[i] == node.val) {
+    //             // node.val = preorder[p];
+    //             index = i;
+    //             // break;
+    //         }
+    //     }
+
+    //     node.left = buildTree(preorder, inorder, min, index);
+    //     node.right = buildTree(preorder, inorder, index+1, max);
+    //     return node;
+    // }
 
     /**110. Balanced Binary Tree */
     public boolean isBalanced(TreeNode root){
