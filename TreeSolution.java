@@ -78,6 +78,7 @@ public class TreeSolution {
     }
 
     /**105. Construct Binary Tree from Preoroder and Inorder Traversal */
+    // LeetCode this question most popular answer's comment has a HashMap answer, pretty good
     public TreeNode buildTree(int[] preorder, int[] inorder){
         // return buildTree(preorder, inorder, 0, inorder.length);
         return buildTree(preorder, inorder, 0, 0, inorder.length);
@@ -102,23 +103,22 @@ public class TreeSolution {
         return node;
     }
 
-    // public TreeNode buildTree(int[] preorder, int[] inorder, int min, int max){
-    //     if(min == max) return null;
-    //     TreeNode node = new TreeNode(preorder[min]);
-    //     int index = 0;
-    //     for(int i=min; i<max; i++){
-    //         // if(inorder[i] == preorder[p]) {
-    //         if(inorder[i] == node.val) {
-    //             // node.val = preorder[p];
-    //             index = i;
-    //             // break;
-    //         }
-    //     }
+    /**108. Convert Sorted Array to Binary Search Tree */
+    public TreeNode sortedArrayToBST(int[] nums){
+        return sortedArrayToBST(nums, 0, nums.length);
+    }
 
-    //     node.left = buildTree(preorder, inorder, min, index);
-    //     node.right = buildTree(preorder, inorder, index+1, max);
-    //     return node;
-    // }
+    public TreeNode sortedArrayToBST(int[] nums, int min, int max){
+        if(min > max) return null;
+        // TreeNode result = new TreeNode(nums[(max - min)/2]);
+        // result.left = sortedArrayToBST(nums, min, (max - min)/2);
+        // result.right = sortedArrayToBST(nums, (max - min)/2+1, max);
+        // don't forget about this fool mistake.
+        TreeNode result = new TreeNode(nums[(max + min)/2]);
+        result.left = sortedArrayToBST(nums, min, (max + min)/2);
+        result.right = sortedArrayToBST(nums, (max + min)/2+1, max);
+        return result;
+    }
 
     /**110. Balanced Binary Tree */
     public boolean isBalanced(TreeNode root){
