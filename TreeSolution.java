@@ -121,6 +121,14 @@ public class TreeSolution {
     }
 
     /**109. Convert Sorted List to Binary Search Tree */
+    public TreeNode sortedListToBST(ListNode head){
+        return sortedListToBST(head, fast, slow);
+    }
+
+    public TreeNode sortedListToBST(ListNode head, ListNode fast, ListNode slow){
+        if(fast == slow) return null;
+        
+    }
 
     /**110. Balanced Binary Tree */
     public boolean isBalanced(TreeNode root){
