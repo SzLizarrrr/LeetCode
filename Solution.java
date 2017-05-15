@@ -7,7 +7,7 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class TreeSolution {
+public class Solution {
     /**21. Merge Two Sorted Lists */
     //My answer is not best answer, check discusss, discuss has two very interesting answer
     public ListNode mergeTwoLists(ListNode l1, ListNode l2){
