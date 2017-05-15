@@ -9,6 +9,7 @@
  */
 public class TreeSolution {
     /**21. Merge Two Sorted Lists */
+    //My answer is not best answer, check discusss, discuss has two very interesting answer
     public ListNode mergeTwoLists(ListNode l1, ListNode l2){
         ListNode result = null;
         if(l1 == null && l2 == null) return result;
