@@ -8,6 +8,29 @@
  * }
  */
 public class TreeSolution {
+    /**21. Merge Two Sorted Lists */
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2){
+        ListNode result = null;
+        if(l1 == null && l2 == null) return result;
+        if(l1 == null && l2 != null) {
+            result = l2;
+            return result;
+        }
+        if(l1 != null && l2 == null) {
+            result = l1;
+            return result;
+        }
+        if(l1.val > l2.val){
+            result = l2;
+            result.next = mergeTwoLists(l1, l2.next);
+        }
+        else {
+            result = l1;
+            result.next = mergeTwoLists(l1.next, l2);
+        }
+        return result;
+    }
+
     /**102. Binary Tree Level Order Traveral I */
     public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> tmp = new LinkedList<TreeNode>();
