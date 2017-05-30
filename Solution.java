@@ -34,6 +34,7 @@ public class Solution {
 
     /**61. Rotate List */
     public ListNode rotateRight(ListNode head, int k){
+        if(head == null) return head;
         int linkSize = 1;
         ListNode node = head;
         while (node.next!=null){
@@ -41,7 +42,10 @@ public class Solution {
             linkSize++;
         }
         node.next = head;
-        for(int i=0; i<linkSize-k-1; i++){
+        while(linkSize<k){
+            linkSize += linkSize;
+        }
+        for(int i=0; i<linkSize-k; i++){
             node = node.next;
         }
         head = node.next;
