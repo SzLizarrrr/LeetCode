@@ -32,6 +32,23 @@ public class Solution {
         return result;
     }
 
+    /**61. Rotate List */
+    public ListNode rotateRight(ListNode head, int k){
+        int linkSize = 1;
+        ListNode node = head;
+        while (node.next!=null){
+            node = node.next;
+            linkSize++;
+        }
+        node.next = head;
+        for(int i=0; i<linkSize-k-1; i++){
+            node = node.next;
+        }
+        head = node.next;
+        node.next = null;
+        return head;
+    }
+
     /**102. Binary Tree Level Order Traveral I */
     public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> tmp = new LinkedList<TreeNode>();
