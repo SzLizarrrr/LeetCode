@@ -42,10 +42,7 @@ public class Solution {
             linkSize++;
         }
         node.next = head;
-        while(linkSize<k){
-            linkSize += linkSize;
-        }
-        for(int i=0; i<linkSize-k; i++){
+        for(int i=0; i<linkSize-k%linkSize; i++){
             node = node.next;
         }
         head = node.next;
