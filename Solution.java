@@ -50,6 +50,19 @@ public class Solution {
         return head;
     }
 
+    /**83. Remove Duplicates from Sorted List */
+    public ListNode deleteDuplicates(ListNode head){
+        ListNode node = head;
+        deleteDuplicatesUtil(node);
+        return head;
+    }
+
+    public void deleteDuplicatesUtil(ListNode node){
+        if(node.next == null) return;
+        if(node.val == node.next.val) node = node.next;
+        deleteDuplicatesUtil(node.next);
+    }
+
     /**102. Binary Tree Level Order Traveral I */
     public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> tmp = new LinkedList<TreeNode>();
