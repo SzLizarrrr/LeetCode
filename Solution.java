@@ -10,22 +10,22 @@
 public class Solution {
     /**21. Merge Two Sorted Lists */
     //My answer is not best answer, check discusss, discuss has two very interesting answer
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2){
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode result = null;
-        if(l1 == null && l2 == null) return result;
-        if(l1 == null && l2 != null) {
+        if (l1 == null && l2 == null)
+            return result;
+        if (l1 == null && l2 != null) {
             result = l2;
             return result;
         }
-        if(l1 != null && l2 == null) {
+        if (l1 != null && l2 == null) {
             result = l1;
             return result;
         }
-        if(l1.val > l2.val){
+        if (l1.val > l2.val) {
             result = l2;
             result.next = mergeTwoLists(l1, l2.next);
-        }
-        else {
+        } else {
             result = l1;
             result.next = mergeTwoLists(l1.next, l2);
         }
@@ -33,16 +33,17 @@ public class Solution {
     }
 
     /**61. Rotate List */
-    public ListNode rotateRight(ListNode head, int k){
-        if(head == null) return head;
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null)
+            return head;
         int linkSize = 1;
         ListNode node = head;
-        while (node.next!=null){
+        while (node.next != null) {
             node = node.next;
             linkSize++;
         }
         node.next = head;
-        for(int i=0; i<linkSize-k%linkSize; i++){
+        for (int i = 0; i < linkSize - k % linkSize; i++) {
             node = node.next;
         }
         head = node.next;
@@ -50,33 +51,62 @@ public class Solution {
         return head;
     }
 
-    /**83. Remove Duplicates from Sorted List */
-    //discuss has a very nice soluction that i never thought, suggest to see it.
-    public ListNode deleteDuplicates(ListNode head){
+    /**82. Remove Duplicates from Sorted List II */
+    public ListNode deleteDuplicates(ListNode head) {
         ListNode node = head;
-        
-        while (node != null){
-            if (node.next == null) break;
-            if (node.val == node.next.val) node.next = node.next.next;
-            else node = node.next; //else is very important, if no else, no matter it passed or not, the project will skip to next node. Made a mistake before.
+        boolean checkMark = false;
+
+        while (node != null) {
+            if (node.next == null)
+                break;
+            if (node.val == node.next.val) {
+                node.next = node.next.next;
+                checkMark = true;
+            } else {
+                node = node.next;
+                if (checkMark) {
+                    node = node.next;
+                    checkMark = false;
+                }
+            }
         }
 
         return head;
-   }
+    }
+
+    /**83. Remove Duplicates from Sorted List */
+    //discuss has a very nice soluction that i never thought, suggest to see it.
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode node = head;
+
+        while (node != null) {
+            if (node.next == null)
+                break;
+            if (node.val == node.next.val)
+                node.next = node.next.next;
+            else
+                node = node.next; //else is very important, if no else, no matter it passed or not, the project will skip to next node. Made a mistake before.
+        }
+
+        return head;
+    }
 
     /**102. Binary Tree Level Order Traveral I */
     public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> tmp = new LinkedList<TreeNode>();
         List<List<Integer>> result = new LinkedList<List<Integer>>();
-        if(root == null) return result;
+        if (root == null)
+            return result;
 
         tmp.offer(root);
-        while(!tmp.isEmpty()){
+        while (!tmp.isEmpty()) {
             int size = tmp.size(); //very important!
             List<Integer> sublist = new LinkedList<Integer>();
-            for(int i=0; i<size; i++){
-                if(tmp.peek().left != null) tmp.offer(tmp.peek().left);
-                if(tmp.peek().right != null) tmp.offer(tmp.peek().right);
+            for (int i = 0; i < size; i++) {
+                if (tmp.peek().left != null)
+                    tmp.offer(tmp.peek().left);
+                if (tmp.peek().right != null)
+                    tmp.offer(tmp.peek().right);
                 sublist.add(tmp.poll().val);
             }
             result.add(sublist);
@@ -87,135 +117,149 @@ public class Solution {
     /**107. Binary Tree Level Order Traveral II */
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         LinkedList<List<Integer>> result = new LinkedList<List<Integer>>();
-        
+
         addLevel(result, 0, root);
-        
+
         return result;
     }
-    
-    public void addLevel(LinkedList<List<Integer>> result, int level, TreeNode point){
-        if(point == null) return;
-        if(result.size()-1 < level) result.addFirst(new LinkedList<Integer>());
-        result.get(result.size()-1-level).add(point.val);
-        
-        addLevel(result, level+1, point.left);
-        addLevel(result, level+1, point.right);
+
+    public void addLevel(LinkedList<List<Integer>> result, int level, TreeNode point) {
+        if (point == null)
+            return;
+        if (result.size() - 1 < level)
+            result.addFirst(new LinkedList<Integer>());
+        result.get(result.size() - 1 - level).add(point.val);
+
+        addLevel(result, level + 1, point.left);
+        addLevel(result, level + 1, point.right);
     }
-    
+
     /**103. Binary Tree Zigzag Level Order Traversal */
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root){
-       LinkedList<List<Integer>> result = new LinkedList<List<Integer>>();
-       int level = 0;
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        LinkedList<List<Integer>> result = new LinkedList<List<Integer>>();
+        int level = 0;
 
-       resultHelpMethod(root, result, level);
-       return result;
+        resultHelpMethod(root, result, level);
+        return result;
     }
 
-    public void resultHelpMethod(TreeNode node, LinkedList<List<Integer>> result, int level){
-        if(node == null) return;
-        if(result.size()-1 < level) result.add(new LinkedList<Integer>());
-        if(level%2 == 0) result.get(level).add(node.val);
-        else result.get(level).add(0, node.val);
+    public void resultHelpMethod(TreeNode node, LinkedList<List<Integer>> result, int level) {
+        if (node == null)
+            return;
+        if (result.size() - 1 < level)
+            result.add(new LinkedList<Integer>());
+        if (level % 2 == 0)
+            result.get(level).add(node.val);
+        else
+            result.get(level).add(0, node.val);
 
-        resultHelpMethod(node.left, result, level+1);
-        resultHelpMethod(node.right, result, level+1);
+        resultHelpMethod(node.left, result, level + 1);
+        resultHelpMethod(node.right, result, level + 1);
     }
 
     /**104. Maximum Depth of Binary Tree */
     public int maxDepth(TreeNode root) {
-        if(root == null) return 0;
-        
+        if (root == null)
+            return 0;
+
         int leftDepth = maxDepth(root.left);
         // System.out.println("left " + leftDepth);
         int rightDepth = maxDepth(root.right);
         // System.out.println("right " + rightDepth);
-        
-        return Math.max(leftDepth, rightDepth)+1;
+
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 
     /**105. Construct Binary Tree from Preoroder and Inorder Traversal */
     // LeetCode this question most popular answer's comment has a HashMap answer, pretty good
-    public TreeNode buildTree(int[] preorder, int[] inorder){
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
         // return buildTree(preorder, inorder, 0, inorder.length);
         return buildTree(preorder, inorder, 0, 0, inorder.length);
     }
 
-    public TreeNode buildTree(int[] preorder, int[] inorder, int p, int min, int max){
-        if(p >= preorder.length || min == max) return null;
+    public TreeNode buildTree(int[] preorder, int[] inorder, int p, int min, int max) {
+        if (p >= preorder.length || min == max)
+            return null;
         TreeNode node = new TreeNode(preorder[p]);
         int index = 0;
-        for(int i=min; i<max; i++){
+        for (int i = min; i < max; i++) {
             // if(inorder[i] == preorder[p]) {
-            if(inorder[i] == node.val) {
+            if (inorder[i] == node.val) {
                 // node.val = preorder[p];
                 index = i;
                 // break;
             }
         }
 
-        node.left = buildTree(preorder, inorder, p+1, min, index);
+        node.left = buildTree(preorder, inorder, p + 1, min, index);
         // node.right = buildTree(preorder, inorder, index+1, index+1, max);
-        node.right = buildTree(preorder, inorder, p + index - min + 1, index+1, max);
+        node.right = buildTree(preorder, inorder, p + index - min + 1, index + 1, max);
         return node;
     }
 
     /**108. Convert Sorted Array to Binary Search Tree */
-    public TreeNode sortedArrayToBST(int[] nums){
+    public TreeNode sortedArrayToBST(int[] nums) {
         return sortedArrayToBST(nums, 0, nums.length);
     }
 
-    public TreeNode sortedArrayToBST(int[] nums, int min, int max){
-        if(min > max) return null;
+    public TreeNode sortedArrayToBST(int[] nums, int min, int max) {
+        if (min > max)
+            return null;
         // TreeNode result = new TreeNode(nums[(max - min)/2]);
         // result.left = sortedArrayToBST(nums, min, (max - min)/2);
         // result.right = sortedArrayToBST(nums, (max - min)/2+1, max);
         // don't forget about this fool mistake.
-        TreeNode result = new TreeNode(nums[(max + min)/2]);
-        result.left = sortedArrayToBST(nums, min, (max + min)/2);
-        result.right = sortedArrayToBST(nums, (max + min)/2+1, max);
+        TreeNode result = new TreeNode(nums[(max + min) / 2]);
+        result.left = sortedArrayToBST(nums, min, (max + min) / 2);
+        result.right = sortedArrayToBST(nums, (max + min) / 2 + 1, max);
         return result;
     }
 
     /**109. Convert Sorted List to Binary Search Tree */
-    public TreeNode sortedListToBST(ListNode head){
+    public TreeNode sortedListToBST(ListNode head) {
         return sortedListToBST(head, fast, slow);
     }
 
-    public TreeNode sortedListToBST(ListNode head, ListNode fast, ListNode slow){
-        if(fast == slow) return null;
-        
+    public TreeNode sortedListToBST(ListNode head, ListNode fast, ListNode slow) {
+        if (fast == slow)
+            return null;
+
     }
 
     /**110. Balanced Binary Tree */
-    public boolean isBalanced(TreeNode root){
-         return high(root)!=-1;
+    public boolean isBalanced(TreeNode root) {
+        return high(root) != -1;
     }
 
-    public int high(TreeNode root){
-        if(root == null) return 0;
-        
+    public int high(TreeNode root) {
+        if (root == null)
+            return 0;
+
         int left = high(root.left);
-        if(left == -1) return -1;
+        if (left == -1)
+            return -1;
         // System.out.println("left " + left);
-        
+
         int right = high(root.right);
-        if(right == -1) return -1;
+        if (right == -1)
+            return -1;
         // System.out.println("right "+ right);
-        
+
         // System.out.println(Math.abs(right-left));
-        if (Math.abs(right-left)>1) return -1;
-        
-        return Math.max(right,left)+1;
+        if (Math.abs(right - left) > 1)
+            return -1;
+
+        return Math.max(right, left) + 1;
     }
 
     /**94. Binary Tree Inorder Traversal */
-    public List<Integer> inorderTraversalIterative(TreeNode root){
+    public List<Integer> inorderTraversalIterative(TreeNode root) {
         List<Integer> result = new ArrayList<Integer>();
         Stack<TreeNode> temp = new Stack<TreeNode>();
         TreeNode point = root;
 
-        while(point!=null || !temp.empty()){
-            while(point!=null){
+        while (point != null || !temp.empty()) {
+            while (point != null) {
                 temp.add(point);
                 point = point.left;
             }
@@ -230,7 +274,7 @@ public class Solution {
         return result;
     }
 
-    public List<Integer> inorderTraversalRecursive(TreeNode root){
+    public List<Integer> inorderTraversalRecursive(TreeNode root) {
         List<Integer> result = new ArrayList<Integer>();
 
         postResult(root, result);
@@ -238,18 +282,18 @@ public class Solution {
         return result;
     }
 
-    public void postResult(TreeNode point, List<Integer> result){
-        if(point != null){
-            if(point.left != null)
+    public void postResult(TreeNode point, List<Integer> result) {
+        if (point != null) {
+            if (point.left != null)
                 postResult(point.left, result);
-                
+
             result.add(point.val);
 
-            if(point.right != null)
+            if (point.right != null)
                 postResult(point.right, result);
         }
     }
-    
+
     /**98. Validate Binary Search Tree */
     // int max, min;
     // public boolean isValidBST(TreeNode root){
@@ -268,43 +312,53 @@ public class Solution {
     //     return true;
     // }
 
-    public boolean isValidBST(TreeNode root){
+    public boolean isValidBST(TreeNode root) {
         // return isValidBST(root, Integer.MAX_VALUE, Integer.MIN_VALUE); using Integer will be failed on number 2147483647
         return isValidBST(root, Long.MAX_VALUE, Long.MIN_VALUE);
     }
 
     // public boolean isValidBST(TreeNode node, Integer max, Integer min){
-    public boolean isValidBST(TreeNode node, long max, long min){
-        if(node == null) return true;
-        if(node.val >= max || node.val <= min) return false;
+    public boolean isValidBST(TreeNode node, long max, long min) {
+        if (node == null)
+            return true;
+        if (node.val >= max || node.val <= min)
+            return false;
         // max = node.val; isValidBST(node.left, max, min);
         // min = nood.val; isValidBST(node.right, max, min);
         return isValidBST(node.left, node.val, min) && isValidBST(node.right, max, node.val);
     }
-    
+
     /**100. Same Tree */
-    public boolean isSameTree(TreeNode p, TreeNode q){
-        if(p == null && q == null) return true;
-        if(p == null && q != null) return false;
-        if(p != null && q == null) return false;
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null)
+            return true;
+        if (p == null && q != null)
+            return false;
+        if (p != null && q == null)
+            return false;
         // last two line can merge as this
         // if(p == null || q == null) return false;
-        if(p.val != q.val) return false;
+        if (p.val != q.val)
+            return false;
 
         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 
     }
 
     /**101. Symmetric Tree */
-    public boolean isSymmetric(TreeNode root){
-        if(root == null) return true; // very easy to miss
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null)
+            return true; // very easy to miss
         return isSymmetric(root.left, root.right);
     }
 
-    public boolean isSymmetric(TreeNode leftNode, TreeNode rightNode){
-        if(leftNode == null && rightNode == null) return true;
-        if(leftNode == null || rightNode == null) return false;
-        if(leftNode.val != rightNode.val) return false;
+    public boolean isSymmetric(TreeNode leftNode, TreeNode rightNode) {
+        if (leftNode == null && rightNode == null)
+            return true;
+        if (leftNode == null || rightNode == null)
+            return false;
+        if (leftNode.val != rightNode.val)
+            return false;
 
         return isSymmetric(leftNode.left, rightNode.right) && isSymmetric(leftNode.right, rightNode.left);
     }
