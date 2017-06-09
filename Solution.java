@@ -51,18 +51,18 @@ public class Solution {
     }
 
     /**83. Remove Duplicates from Sorted List */
-    //have no idea abou
+    //discuss has a very nice soluction that i never thought, suggest to see it.
     public ListNode deleteDuplicates(ListNode head){
         ListNode node = head;
-        deleteDuplicatesUtil(node);
-        return head;
-    }
+        
+        while (node != null){
+            if (node.next == null) break;
+            if (node.val == node.next.val) node.next = node.next.next;
+            else node = node.next; //else is very important, if no else, no matter it passed or not, the project will skip to next node. Made a mistake before.
+        }
 
-    public void deleteDuplicatesUtil(ListNode node){
-        if(node.next == null) return;
-        if(node.val == node.next.val) node = node.next;
-        deleteDuplicatesUtil(node.next);
-    }
+        return head;
+   }
 
     /**102. Binary Tree Level Order Traveral I */
     public List<List<Integer>> levelOrder(TreeNode root) {
