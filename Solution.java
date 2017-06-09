@@ -63,11 +63,11 @@ public class Solution {
                 node.next = node.next.next;
                 checkMark = true;
             } else {
-                node = node.next;
                 if (checkMark) {
                     node = node.next;
                     checkMark = false;
                 }
+                node = node.next;
             }
         }
 
