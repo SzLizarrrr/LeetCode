@@ -53,25 +53,7 @@ public class Solution {
 
     /**82. Remove Duplicates from Sorted List II */
     public ListNode deleteDuplicates(ListNode head) {
-        ListNode node = head;
-        boolean checkMark = false;
 
-        while (node != null) {
-            if (node.next == null)
-                break;
-            if (node.val == node.next.val) {
-                node.next = node.next.next;
-                checkMark = true;
-            } else {
-                if (checkMark) {
-                    node = node.next;
-                    checkMark = false;
-                }
-                node = node.next;
-            }
-        }
-
-        return head;
     }
 
     /**83. Remove Duplicates from Sorted List */
@@ -90,6 +72,8 @@ public class Solution {
 
         return head;
     }
+
+    /**86. Partition List */
 
     /**102. Binary Tree Level Order Traveral I */
     public List<List<Integer>> levelOrder(TreeNode root) {
