@@ -74,6 +74,8 @@ public class Solution {
     }
 
     /**86. Partition List */
+    public ListNode partition(ListNode head, int x) {
+    }
 
     /**102. Binary Tree Level Order Traveral I */
     public List<List<Integer>> levelOrder(TreeNode root) {
