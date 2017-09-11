@@ -1,3 +1,5 @@
+import javax.swing.tree.TreeNode;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -347,5 +349,18 @@ public class Solution {
             return false;
 
         return isSymmetric(leftNode.left, rightNode.right) && isSymmetric(leftNode.right, rightNode.left);
+    }
+
+    /**226. Invert Binary Tree */
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+
+        final TreeNode left = root.left,
+                right = root.right;
+        root.left = invertTree(right);
+        root.right = invertTree(left);
+        return root;
     }
 }
