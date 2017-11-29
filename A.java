@@ -7,8 +7,10 @@ public class A {
 		// System.out.println(a.permutation(args[0], args[1]));
 		// System.out.println(a.sumNumber(3));
 		// System.out.println(a.fibonacciList(6));
-		int[] l = new int[] { 1, 2, 3, 4, 1, 3, 5, 6, 6, 6, 6, 6 };
-		System.out.println(a.getPopularNumber(l));
+
+		// int[] l = new int[] { 1, 2, 3, 4, 1, 3, 5, 6, 6, 6, 6, 6 };
+		// System.out.println(a.getPopularNumber(l));
+		// System.out.println(a.getPopularElement(l));
 
 		// /**replace spaces to %20 -- begin -- */
 		// char[] ch = { 'a', 'a', ' ', 'a', ' ', 'a', 'a', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
@@ -19,16 +21,43 @@ public class A {
 	}
 
 	int getPopularNumber(int[] l) {
-		HashMap<Integer, Integer> temp = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 
-		Arrays.stream(l).forEach(element -> {
-			if (temp.containsKey(element))
-				temp.put(element, temp.get(element) + 1);
-			else
-				temp.put(element, 1);
+		Arrays.stream(l).forEach(i -> {
+			Integer count = map.get(i);
+			map.put(i, count != null ? count + 1 : 0);
 		});
 
-		return temp.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+		return map.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+	}
+
+	int getPopularElement(int[] l) {
+
+		if (l == null || l.length == 0)
+			return 0;
+
+		Arrays.sort(l);
+
+		int previous = l[0];
+		int popular = l[0];
+		int count = 1;
+		int maxCount = 1;
+
+		for (int element : l) {
+			if (element == previous) {
+				count++;
+			} else {
+				if (count > maxCount) {
+					popular = previous;
+					maxCount = count;
+				}
+				previous = element;
+				count = 1;
+			}
+		}
+
+		return count > maxCount ? previous : popular;
+
 	}
 
 	boolean permutation(String s, String t) {
