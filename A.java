@@ -1,11 +1,14 @@
 import java.util.*;
+import java.util.stream.Stream;
 
 public class A {
 	public static void main(String[] args) {
 		A a = new A();
 		// System.out.println(a.permutation(args[0], args[1]));
 		// System.out.println(a.sumNumber(3));
-		// System.out.println(a.fibonacciList(0));
+		// System.out.println(a.fibonacciList(6));
+		int[] l = new int[] { 1, 2, 3, 4, 1, 3, 5, 6, 6, 6, 6, 6 };
+		System.out.println(a.getPopularNumber(l));
 
 		// /**replace spaces to %20 -- begin -- */
 		// char[] ch = { 'a', 'a', ' ', 'a', ' ', 'a', 'a', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
@@ -13,6 +16,19 @@ public class A {
 		// a.replaceSpaces(ch, length);
 		// /**replace spaces to %20 -- end -- */
 		// System.out.println(a.printBinary(Double.parseDouble(args[0])));
+	}
+
+	int getPopularNumber(int[] l) {
+		HashMap<Integer, Integer> temp = new HashMap<Integer, Integer>();
+
+		Arrays.stream(l).forEach(element -> {
+			if (temp.containsKey(element))
+				temp.put(element, temp.get(element) + 1);
+			else
+				temp.put(element, 1);
+		});
+
+		return temp.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
 	}
 
 	boolean permutation(String s, String t) {
