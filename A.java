@@ -8,8 +8,8 @@ public class A {
 		// System.out.println(a.sumNumber(3));
 		// System.out.println(a.fibonacciList(6));
 
-		// int[] l = new int[] { 1, 2, 3, 4, 1, 3, 5, 6, 6, 6, 6, 6 };
-		// System.out.println(a.getPopularNumber(l));
+		int[] l = new int[] { 1, 2, 3, 4, 1, 3, 5, 6, 6, 6, 6, 6 };
+		System.out.println(a.getPopularNumber(l));
 		// System.out.println(a.getPopularElement(l));
 
 		// /**replace spaces to %20 -- begin -- */
@@ -23,10 +23,7 @@ public class A {
 	int getPopularNumber(int[] l) {
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 
-		Arrays.stream(l).forEach(i -> {
-			Integer count = map.get(i);
-			map.put(i, count != null ? count + 1 : 0);
-		});
+		Arrays.stream(l).forEach(i -> map.put(i, map.containsKey(i) ? map.get(i) + 1 : 1));
 
 		return map.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
 	}
