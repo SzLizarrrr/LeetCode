@@ -9,7 +9,11 @@ public class A {
 		// System.out.println(a.fibonacciList(6));
 
 		int[] l = new int[] { 1, 2, 3, 4, 1, 3, 5, 6, 6, 6, 6, 6 };
-		System.out.println(a.getPopularNumber(l));
+		// int[] l = new int[] { 2, 7, 11, 15 };
+		// Arrays.stream(a.sum(l, 9)).forEach(element -> System.out.println(element));
+		a.sum(l, 9).stream()
+			.forEach(element -> System.out.println("[" + element[0] + ", " + element[1] + "]"));
+		// System.out.println(a.getPopularNumber(l));
 		// System.out.println(a.getPopularElement(l));
 
 		// /**replace spaces to %20 -- begin -- */
@@ -18,6 +22,21 @@ public class A {
 		// a.replaceSpaces(ch, length);
 		// /**replace spaces to %20 -- end -- */
 		// System.out.println(a.printBinary(Double.parseDouble(args[0])));
+	}
+
+	List<int[]> sum(int[] array, int sum) {
+		List<int[]> list = new ArrayList<int[]>();
+		int[] result = new int[2];
+		Set<Integer> set = new HashSet<Integer>();
+		for (int element : array) {
+			if (set.contains(sum - element)) {
+				result[1] = element;
+				result[0] = sum - element;
+				list.add(result);
+			}
+			set.add(element);
+		}
+		return list;
 	}
 
 	int getPopularNumber(int[] l) {
