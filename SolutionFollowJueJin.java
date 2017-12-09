@@ -39,7 +39,7 @@ public class SolutionFollowJueJin {
         return reverse == x;
     }
 
-    public boolean isPalindromeInDisucss(int x) { // the only difference between my soluction and this soluction is here only reversed half number and cut have number from original number. Mine reservsed whold number.
+    public boolean isPalindromeInDisucss(int x) { // the only difference between my soluction and this soluction is here only reversed half number and cut have number from original number. Mine resultervsed whold number.
         if ( x < 0 || (x % 10 == 0 && x != 0) ) return false;
         int halfReverse = 0;
 
@@ -54,7 +54,7 @@ public class SolutionFollowJueJin {
     /**13. Roman to Integer */
     public int romanToInt(String s) {
         int result = 0;
-        int node = 0;
+        int preValue = 0;
         Map<Character, Integer> dict = new HashMap<Character, Integer>();
         dict.put('M', 1000);
         dict.put('D', 500);
@@ -66,10 +66,40 @@ public class SolutionFollowJueJin {
 
         for(int i = 0; i < s.length(); i++) {
             int point = dict.get(s.charAt(i));
-            result += point > node ? point - 2 * node : point;
-            node = point;
+            result += point > preValue ? point - 2 * preValue : point;
+            preValue = point;
         }
 
+        return result;
+    }
+
+    public int romanToIntInDiscuss(String s) {
+        int result = 0;
+        for (int i = s.length(); i > 0; i --) {
+            switch (s.charAt(i-1)) {
+                case 'I':
+                    result += (result >= 5 ? -1 : 1);
+                    break;
+                case 'V':
+		        	result += 5;
+		        	break;
+		        case 'X':
+		        	result += 10 * (result >= 50 ? -1 : 1);
+		        	break;
+		        case 'L':
+		        	result += 50;
+		        	break;
+		        case 'C':
+		        	result += 100 * (result >= 500 ? -1 : 1);
+		        	break;
+		        case 'D':
+		        	result += 500;
+		        	break;
+		        case 'M':
+		        	result += 1000;
+		        	break;
+            }
+        }
         return result;
     }
 }
