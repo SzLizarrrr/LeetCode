@@ -1,4 +1,5 @@
 import javax.swing.tree.TreeNode;
+import java.util.*;
 
 /**
  * Definition for a binary tree node.
@@ -9,7 +10,8 @@ import javax.swing.tree.TreeNode;
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+public class SolutionPartOne {
+
     /**21. Merge Two Sorted Lists */
     //My answer is not best answer, check discusss, discuss has two very interesting answer
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {

@@ -8,11 +8,11 @@ public class A {
 		// System.out.println(a.sumNumber(3));
 		// System.out.println(a.fibonacciList(6));
 
-		int[] l = new int[] { 1, 2, 3, 4, 1, 3, 5, 6, 6, 6, 6, 6 };
+		// int[] l = new int[] { 1, 2, 3, 4, 1, 3, 5, 6, 6, 6, 6, 6 };
 		// int[] l = new int[] { 2, 7, 11, 15 };
 		// Arrays.stream(a.sum(l, 9)).forEach(element -> System.out.println(element));
-		a.sum(l, 9).stream()
-			.forEach(element -> System.out.println("[" + element[0] + ", " + element[1] + "]"));
+		// a.sum(l, 9).stream()
+			// .forEach(element -> System.out.println("[" + element[0] + ", " + element[1] + "]"));
 		// System.out.println(a.getPopularNumber(l));
 		// System.out.println(a.getPopularElement(l));
 
