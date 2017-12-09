@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class SolutionFollowJueJin {
     /**7. Reverse Integer */
@@ -22,6 +23,53 @@ public class SolutionFollowJueJin {
             result = tmp;
             x = x/10;
         }
+        return result;
+    }
+
+    /**9. Palindrome Number */
+    public boolean isPalindrome(int x) {
+        if(x < 0 || (x % 10 == 0 && x != 0)) return false;
+        int tmp = x, reverse = 0;
+
+        while(tmp != 0) {
+            reverse = reverse * 10 + tmp % 10;
+            tmp = tmp / 10;
+        }
+
+        return reverse == x;
+    }
+
+    public boolean isPalindromeInDisucss(int x) { // the only difference between my soluction and this soluction is here only reversed half number and cut have number from original number. Mine reservsed whold number.
+        if ( x < 0 || (x % 10 == 0 && x != 0) ) return false;
+        int halfReverse = 0;
+
+        while(halfReverse < x) {
+            halfReverse = halfReverse * 10 + x % 10;
+            x = x / 10;
+        }
+
+        return x == halfReverse || x == halfReverse / 10;
+    }
+
+    /**13. Roman to Integer */
+    public int romanToInt(String s) {
+        int result = 0;
+        int node = 0;
+        Map<Character, Integer> dict = new HashMap<Character, Integer>();
+        dict.put('M', 1000);
+        dict.put('D', 500);
+        dict.put('C', 100);
+        dict.put('L', 50);
+        dict.put('X', 10);
+        dict.put('V', 5);
+        dict.put('I', 1);
+
+        for(int i = 0; i < s.length(); i++) {
+            int point = dict.get(s.charAt(i));
+            result += point > node ? point - 2 * node : point;
+            node = point;
+        }
+
         return result;
     }
 }
