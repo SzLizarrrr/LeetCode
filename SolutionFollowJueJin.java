@@ -102,4 +102,11 @@ public class SolutionFollowJueJin {
         }
         return result;
     }
+
+    /**14. Longest Common Prefix */
+    /*
+     * I don't have my answer for this question, I got all the idea from solutions.
+     * Here I left a note for my self. If want to solute this question, need to fully
+     * understand what string.indexOf() is
+     */
 }
