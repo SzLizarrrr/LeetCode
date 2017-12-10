@@ -16,7 +16,7 @@ public class SolutionFollowJueJin {
 
     public int reverseInDiscuss(int x) {
         int result = 0;
-        while(x != 0) {
+        while (x != 0) {
             int tail = x%10;
             int tmp = result * 10 + tail;
             if ((tmp - tail)/10 != result) return 0; // if (tmp - tail)/10 not equals tp result, that means Integer range effect the mod.
@@ -28,10 +28,10 @@ public class SolutionFollowJueJin {
 
     /**9. Palindrome Number */
     public boolean isPalindrome(int x) {
-        if(x < 0 || (x % 10 == 0 && x != 0)) return false;
+        if (x < 0 || (x % 10 == 0 && x != 0)) return false;
         int tmp = x, reverse = 0;
 
-        while(tmp != 0) {
+        while (tmp != 0) {
             reverse = reverse * 10 + tmp % 10;
             tmp = tmp / 10;
         }
@@ -43,7 +43,7 @@ public class SolutionFollowJueJin {
         if ( x < 0 || (x % 10 == 0 && x != 0) ) return false;
         int halfReverse = 0;
 
-        while(halfReverse < x) {
+        while (halfReverse < x) {
             halfReverse = halfReverse * 10 + x % 10;
             x = x / 10;
         }
@@ -64,7 +64,7 @@ public class SolutionFollowJueJin {
         dict.put('V', 5);
         dict.put('I', 1);
 
-        for(int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             int point = dict.get(s.charAt(i));
             result += point > preValue ? point - 2 * preValue : point;
             preValue = point;
