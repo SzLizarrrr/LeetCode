@@ -18,14 +18,10 @@ public class SolutionPartOne {
         ListNode result = null;
         if (l1 == null && l2 == null)
             return result;
-        if (l1 == null && l2 != null) {
-            result = l2;
-            return result;
-        }
-        if (l1 != null && l2 == null) {
-            result = l1;
-            return result;
-        }
+        if (l1 == null && l2 != null)
+            return l2;
+        if (l1 != null && l2 == null)
+            return l1;
         if (l1.val > l2.val) {
             result = l2;
             result.next = mergeTwoLists(l1, l2.next);
