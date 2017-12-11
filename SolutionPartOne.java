@@ -13,14 +13,12 @@ import java.util.*;
 public class SolutionPartOne {
 
     /**21. Merge Two Sorted Lists */
-    //My answer is not best answer, check discusss, discuss has two very interesting answer
+    //My answer is not best answer, check discusss, discuss has one very interesting answer
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode result = null;
-        if (l1 == null && l2 == null)
-            return result;
-        if (l1 == null && l2 != null)
+        ListNode result;
+        if (l1 == null)
             return l2;
-        if (l1 != null && l2 == null)
+        if (l2 == null)
             return l1;
         if (l1.val > l2.val) {
             result = l2;
