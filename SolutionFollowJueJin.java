@@ -117,20 +117,17 @@ public class SolutionFollowJueJin {
         for (char element : s.toCharArray()) {
             switch (element) {
                 case '}':
-                    if (stack.peek() == '{') {
-                        stack.pop();
+                    if (stack.pop() == '{')
                         break;
-                    } else return false;
+                    else return false;
                 case ']':
-                    if (stack.peek() == '[') {
-                        stack.pop();
+                    if (stack.pop() == '[')
                         break;
-                    } else return false;
+                    else return false;
                 case ')':
-                    if (stack.peek() == '(') {
-                        stack.pop();
+                    if (stack.pop() == '(')
                         break;
-                    } else return false;
+                    else return false;
                 default :
                     stack.push(element);
             }
