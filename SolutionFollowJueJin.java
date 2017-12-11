@@ -119,15 +119,18 @@ public class SolutionFollowJueJin {
                 case '}':
                     if (stack.pop() == '{')
                         break;
-                    else return false;
+                    else
+                        return false;
                 case ']':
                     if (stack.pop() == '[')
                         break;
-                    else return false;
+                    else
+                        return false;
                 case ')':
                     if (stack.pop() == '(')
                         break;
-                    else return false;
+                    else
+                        return false;
                 default :
                     stack.push(element);
             }
