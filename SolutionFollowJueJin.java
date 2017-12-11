@@ -109,4 +109,47 @@ public class SolutionFollowJueJin {
      * Here I left a note for my self. If want to solute this question, need to fully
      * understand what string.indexOf() is
      */
+
+    /**20. Valid Parentheses */
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        stack.push('A');
+        for (char element : s.toCharArray()) {
+            switch (element) {
+                case '}':
+                    if (stack.peek() == '{') {
+                        stack.pop();
+                        break;
+                    } else return false;
+                case ']':
+                    if (stack.peek() == '[') {
+                        stack.pop();
+                        break;
+                    } else return false;
+                case ')':
+                    if (stack.peek() == '(') {
+                        stack.pop();
+                        break;
+                    } else return false;
+                default :
+                    stack.push(element);
+            }
+        }
+        return stack.peek() == 'A';
+    }
+
+    public boolean isValidInDiscuss(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        for (char element : s.toCharArray()) {
+            if (element == '{')
+                stack.push('}');
+            else if (element == '[')
+                stack.push(']');
+            else if (element == '(')
+                stack.push(')');
+            else if (stack.empty() || stack.pop() != element)
+                return false;
+        }
+        return stack.empty();
+    }
 }
