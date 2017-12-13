@@ -157,4 +157,53 @@ public class SolutionFollowJueJin {
     /*
      * Please check SolutionPartOne.java about this question's answer
      */
+
+    /**26. Remove Duplicates from Sorted Array */
+    /**27. Remove Element */
+    /*
+     * Once have time, please review these questions
+     */
+
+    /**28. Implement strStr() */
+    public int strStr(String haystack, String needle) {
+        for (int i = 0; i < haystack.length()-needle.length()+1; i++) {
+            if (needle.equals(haystack.substring(i, i+needle.length())))
+                return i;
+        }
+        return -1;
+    }
+
+    public int strStrIntDiscuss(String haystack, String needle) {
+        for (int i = 0; ; i++) {
+            for (int j = 0; ; j++) {
+                if (j == needle.length()) return i;
+                if (i + j == haystack.length()) return -1;
+                if (needle.charAt(j) != haystack.charAt(i + j)) break;
+            }
+        }
+    }
+
+    /**35.Search Insert Position */
+    public int searchInsert(int[] nums, int target) {
+        if (target > nums[nums.length-1]) return nums.length;
+        if (target < nums[0]) return 0;
+        if (nums.length == 0) return 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] >= target) return i;
+        }
+        return nums.length;
+    }
+
+    public int searchInsertInDiscuss(int[] nums, int target) {
+        int start = 0, end = nums.length-1;
+
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (nums[mid] < target) start = mid + 1;
+            else if (nums[mid] > target) end = mid - 1;
+            else return mid;
+        }
+
+        return start;
+    }
 }
