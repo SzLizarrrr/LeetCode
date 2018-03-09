@@ -22,7 +22,63 @@ public class A {
 		// a.replaceSpaces(ch, length);
 		// /**replace spaces to %20 -- end -- */
 		// System.out.println(a.printBinary(Double.parseDouble(args[0])));
+
+        // String sentence = "I like Akemi so much.";
+        // System.out.println(a.reverseSentence(sentence));
+        int[] input = { 1, 2, 3, 4, 1, 3, 5, 6 };// {1,2,3,4,5};
+        // System.out.println(a.biggestNumber(input));
+        // System.out.println(a.findNBiggest(input, 3));
+        System.out.println(a.findSumNumber(input, 3));
+
 	}
+
+    int findSumNumber(int[] input, int sum) {
+        Set<Integer> result = new HashSet<Integer>();
+        for(int i : input) {
+            if (result.contains(sum-i)) return i;
+            else result.add(sum-i);
+        }
+        return -1;
+    }
+
+    // int findSumNumber(int[] input, int sum) {
+    //     HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    //     for(int i : input) {
+    //         map.put(i, null);
+    //     }
+    //     map.forEach((k,v) -> System.out.println(k + " " + v));
+    //     return 1;
+    // }
+
+    int biggestNumber(int[] input) {
+        int result = Integer.MIN_VALUE;
+        for(int element: input) {
+            result = element > result ? element : result;
+        }
+        return result;
+    }
+
+    int findNBiggest (int[] input, int n) {
+        for (int i = 0; i < n; i++) {
+            int temp = 0, index = i;
+            for (int j = i; j < input.length; j++) {
+                index = input[index] > input[j] ? index : j;
+            }
+            temp = input[i];
+            input[i] = input[index];
+            input[index] = temp;
+        }
+        return input[n-1];
+    }
+
+    String reverseSentence(String sentence) {
+        String result = "";
+        String temp[] = sentence.split(" |\\.");
+        for(int i = temp.length; i > 0; i--) {
+            result += temp[i-1] + " ";
+        }
+        return result.substring(0, result.length()-1) + ".";
+    }
 
 	List<int[]> sum(int[] array, int sum) {
 		List<int[]> list = new ArrayList<int[]>();
