@@ -39,7 +39,6 @@ public class HeapSort{
 
     public static void main(String[] args) {
         // int[] arr = new int[]{3,5,3,0,8,6,1,5,8,6,2,4,9,4,7,0,1,8,9,7,3,1,2,5,9,7,4,0,2,6};
-        // int[] arr = new int[]{8,7,6,5,4,3,2,1};
         int[] arr = new int[]{3,2,6,5,1,8,7,4};
         HeapSort h = new HeapSort();
         // h.sort(arr);
