@@ -25,12 +25,42 @@ public class A {
 
         // String sentence = "I like Akemi so much.";
         // System.out.println(a.reverseSentence(sentence));
-        int[] input = { 1, 2, 3, 4, 1, 3, 5, 6 };// {1,2,3,4,5};
+        // int[] input = { 1, 2, 3, 4, 1, 3, 5, 6 };// {1,2,3,4,5};
         // System.out.println(a.biggestNumber(input));
         // System.out.println(a.findNBiggest(input, 3));
-        System.out.println(a.findSumNumber(input, 3));
+        // System.out.println(a.findSumNumber(input, 3));
 
+        // System.out.println(Integer.parseInt(args[0])^Integer.parseInt(args[1]));
+
+        System.out.println(a.longestSubString("cbqabcdab"));
 	}
+
+    String longestSubString(String s) {
+        String result = "";
+        String temp = "";
+        Set<Character> set = new HashSet<Character>();
+        for(int i = 0; i < s.length(); i++) {
+            // System.out.println("i: " + i);
+            for(int j = i; j < s.length(); j++) {
+                // System.out.println("j: " + j);
+                // set.forEach(element -> System.out.println("set: " + element));
+                if(set.contains(s.charAt(j))) {
+                    if (temp.length() > result.length()) {
+                        // System.out.println("re: " + result + " te: " + temp);
+                        // set.forEach(element -> System.out.println(element));
+                        result = temp;
+                    }
+                    break;
+                } else {
+                    temp += Character.toString(s.charAt(j));
+                    set.add(s.charAt(j));
+                }
+            }
+            temp = "";
+            set.clear();
+        }
+        return result;
+    }
 
     int findSumNumber(int[] input, int sum) {
         Set<Integer> result = new HashSet<Integer>();
@@ -165,6 +195,20 @@ public class A {
 
 	// 	reverseTree(root.right);
 	// }
+    //
+    // TreeNode reverseTree(TreeNode root) {
+    //  if (root == null) return root;
+    //  TreeNode temp = root.left;
+    //  root.left = reverseTree(root.right);
+    //  root.right = reverseTree(root.left);
+    //  return root;
+    // }
+    //
+    // TreeNode insertTree(TreeNode root, TreeNode node) {
+    //  if(root == null) return node;
+    //  if(node == null) return root;
+    //  return node.val > root.val ? insertTree(root.right, node) : insertTree(root,left, node);
+    // }
 
 	void replaceSpaces(char[] str, int length) {
 		int spaceCount = 0, newLength;
